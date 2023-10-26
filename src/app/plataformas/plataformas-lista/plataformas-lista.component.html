@@ -1,0 +1,58 @@
+<div class="card mt-3">
+    <div class="card-header">
+        <div class="float-left">
+            <h4>Plataformas</h4>
+        </div>
+        <div class="float-right">
+            <button type="button" class="btn btn-primary" [routerLink]="['novo']">Incluir</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <ng-template #loadingError>
+            <div *ngIf="erro$ | async; else loading" class="alert alert-danger" role="alert">
+              {{mensagemErro}}
+            </div>
+            <ng-template #loading>
+                <span>Carregando registros...</span>
+            </ng-template>
+        </ng-template>
+        <div *ngIf="sucessoExclusao" class="alert alert-success" role="alert">
+          Registro excluído com sucesso
+        </div>
+        <table class="styled-table" *ngIf="plataformas$ | async as plataformas; else loadingError"
+        aria-describedby="Lista de Plataformas">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of plataformas">
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.nome }}</td>
+                    <td>
+                        <span class="float-right">
+                            <button class="btn btn-warning" (click)="alterar(p.id)">
+                                Alterar
+                            </button>
+                            &nbsp;
+                            <button class="btn btn-danger" (click)="excluir(p)">
+                                Excluir
+                            </button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ng-template #deleteModal>
+    <div class="modal-body text-center">
+      <p>Tem certeza que deseja excluir esse registro?</p>
+      <button type="button" class="btn btn-secondary" (click)="confirmaExcluir()">Sim</button>
+      <button type="button" class="btn btn-primary" (click)="desisteExcluir()">Não</button>
+    </div>
+</ng-template>

@@ -1,0 +1,20 @@
+{
+  "plataformas": [
+    {
+      "id": 1,
+      "nome": "PlayStation 1"
+    },
+    {
+      "id": 2,
+      "nome": "PlayStation 2"
+    },
+    {
+      "id": 3,
+      "nome": "Super Nintendo"
+    },
+    {
+      "id": 4,
+      "nome": "NES"
+    }
+  ]
+}
